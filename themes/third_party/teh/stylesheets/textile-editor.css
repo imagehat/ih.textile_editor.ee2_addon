@@ -15,15 +15,23 @@ div.textile-toolbar button {
 	background-repeat: no-repeat;
 	border: 1px solid #f0f0ee;
 	padding: 2px 0;
-	width: 24px;
+	width: 26px;
+	overflow: hidden;
+	text-align: center;
+	background-image: none !important; /* NSM Morphine fix */
+	border-radius: 0 !important; /* NSM Morphine fix */
+	-webkit-border-radius: 0 !important; /* NSM Morphine fix */
+  	-moz-border-radius:	0 !important; /* NSM Morphine fix */
+	-o-border-radius: 0 !important; /* NSM Morphine fix */
 }
 div.textile-toolbar button.standard {
 	text-align: center;
-	width: 24px;
+	width: 26px;
 }
 
 div.textile-toolbar button img {
 	vertical-align: text-bottom;
+	margin: 0 auto;
 }
 
 div.textile-toolbar button:hover, 
@@ -34,7 +42,7 @@ div.textile-toolbar button.unselected:hover {
 div.textile-toolbar button.selected {
 	border: 1px solid #ce9100;
 	background-color: #ffffff;
-	width: 24px;
+	width: 26px;
 }
 
 div.textile-toolbar button.unselected {

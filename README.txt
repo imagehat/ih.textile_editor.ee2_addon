@@ -3,6 +3,8 @@ Textile Editor Helper (TEH) extension for ExpressionEngine Version 2.x
 EE extension by Mike Kroll, www.imagehat.com
 Port of Textile Editor by Dave Olson, slateinfo.blogs.wvu.edu
 
+Version 2.0.1 - Bug fixes for EE 2.1
+              - Fixed display bugs when NSM Morphine is installed
 Version 2.0.0 - EE2 Version
               - added new custom image button which integrates with the
                 EE2 File Manager. Requires EE 2.0.2pb01.
@@ -42,7 +44,7 @@ http://expressionengine.com/forums/viewthread/137184/
 
 To INSTALL:
 1. Upload system/expressionengine/third_party/ih_textile_editor
-3. Upload themes/teh 
+3. Upload themes/third_party/teh 
    This folder contains all the javascripts, css, and images used.
 4. Activate the extension (Add-Ons > Extensions)
 5. Check the Extension Settings - and make sure the paths are correct.
