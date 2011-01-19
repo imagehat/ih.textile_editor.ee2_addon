@@ -15,7 +15,7 @@ $(document).ready(function($) {
 	    var id = $(this).attr("name").substring(9);
 	    var canvas = "field_id_"+id;
 		var toolbar = $("#textile-toolbar-"+canvas);
-		var eebuttons = (typeof(EE.publish.markitup.fields["field_id_"+id]) != "undefined") ? true : false; // flag if the field set to display default formatting buttons?
+		var eebuttons = (typeof(EE.publish.markitup.fields) != "undefined" && typeof(EE.publish.markitup.fields[canvas]) != "undefined") ? true : false; // flag if the field set to display default formatting buttons?
 		
 		if ($(this).val() == "textile") {
 		    if(eebuttons && $("#markItUpField_id_"+id).length) {
