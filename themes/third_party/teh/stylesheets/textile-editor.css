@@ -10,12 +10,12 @@ div.textile-toolbar span.ed_sep {
 }
 
 div.textile-toolbar button {
-	margin: 0;
-	background-color: #f0f0ee;
-	background-repeat: no-repeat;
-	border: 1px solid #f0f0ee;
-	padding: 2px 0;
-	width: 26px;
+	margin: 0 !important;
+	background-color: #f0f0ee !important;
+	background-repeat: no-repeat !important;
+	border: 1px solid #f0f0ee !important;
+	padding: 2px 0 !important;
+	width: 26px !important;
 	overflow: hidden;
 	text-align: center;
 	background-image: none !important; /* NSM Morphine fix */

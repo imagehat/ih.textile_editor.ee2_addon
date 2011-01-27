@@ -72,7 +72,24 @@ class Ih_textile_editor_ext
 	 **/
 	function initialize_editor($data)
 	{
-
+		// Gather all current textile fields
+		// Note: As of EE2.1.3 this now requires a query since field formatting
+		// is not added to the CP markup if the formatting menu is not active.
+		$textile_fields = array();
+		$site_id = $this->EE->config->item('site_id');
+		
+		$this->EE->db->select('field_id');
+		$this->EE->db->where('field_fmt', 'textile');
+		$this->EE->db->where('site_id', $site_id);
+		$query = $this->EE->db->get('exp_channel_fields');
+		
+		if($query->num_rows() > 0) {
+			foreach($query->result() as $row)
+			{
+				$textile_fields['field_id_'.$row->field_id] = $row->field_id;
+			}
+		}
+				
         // Insert CSS
         $this->EE->cp->add_to_head('<link rel="stylesheet" href="'.trim($this->settings['teh_path']).'stylesheets/textile-editor.css" type="text/css" media="screen" />');
         
@@ -81,7 +98,8 @@ class Ih_textile_editor_ext
         $this->EE->javascript->set_global('teh_options.image_path', trim($this->settings['teh_path']).'images/');
         $this->EE->javascript->set_global('teh_options.help_url', $this->EE->cp->masked_url(trim($this->settings['help_url'])));
         $this->EE->javascript->set_global('teh_options.encode_email', trim($this->settings['encode_email']));
-        
+        $this->EE->javascript->set_global('teh_options.fields', $textile_fields);
+
         // Insert JS
 		$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.trim($this->settings['teh_path']).'javascripts/textile-editor.js"></script>');
 		$this->EE->cp->add_to_foot('<script type="text/javascript" src="'.trim($this->settings['teh_path']).'javascripts/textile-editor-config.js"></script>');

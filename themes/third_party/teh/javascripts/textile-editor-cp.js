@@ -1,33 +1,33 @@
 $(document).ready(function($) {
     
-    // Initialize textile fields without formatting menu
-    $("input[name*=\'field_ft_\']").each(function(){
-        if ($(this).val() == "textile") {
-            var id = $(this).attr("name").substring(9);
-			var canvas = "field_id_"+id;			
-            $("#"+canvas).TextileEditor(EE.teh_options);
+    // Initialize all current textile fields
+	$("textarea[name*=\'field_id_\']").each(function(){
+
+		var canvas = $(this).attr("name");
+		
+		if(typeof(EE.teh_options.fields) != "undefined" && typeof(EE.teh_options.fields[canvas]) != "undefined") {
+			
+			var id = EE.teh_options.fields[canvas];
+			
+			if($("#markItUpField_id_"+id).length) {
+		        $("#"+canvas).markItUpRemove();
+	        }
+	
+			$("#"+canvas).TextileEditor(EE.teh_options);
 			teh_filebrowser(canvas);
 		}
-    });
+	});	
+	
 
-    // Initialize textile fields with formatting menu
+    // Toggle TEH toolbar and default formatting buttons (if needed) 
+	// when formatting menu is changed.
 	$("select[name*=\'field_ft_\']").each(function(){
+
 	    var id = $(this).attr("name").substring(9);
 	    var canvas = "field_id_"+id;
 		var toolbar = $("#textile-toolbar-"+canvas);
 		var eebuttons = (typeof(EE.publish.markitup.fields) != "undefined" && typeof(EE.publish.markitup.fields[canvas]) != "undefined") ? true : false; // flag if the field set to display default formatting buttons?
 		
-		if ($(this).val() == "textile") {
-		    if(eebuttons && $("#markItUpField_id_"+id).length) {
-		        $("#"+canvas).markItUpRemove();
-	        }
-			if (toolbar.length == 0) {
-			    $("#"+canvas).TextileEditor(EE.teh_options); 
-			    teh_filebrowser(canvas);
-			}
-		}
-					
-		// Toggle TEH and toggle default formatting buttons if needed
 		$(this).change(function() { 
 		    toolbar = $("#textile-toolbar-"+canvas); // update
 			if ($(this).val() == "textile") {
