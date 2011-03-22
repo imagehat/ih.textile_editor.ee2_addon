@@ -57,7 +57,7 @@ function teh_filebrowser(canvas) {
     });
 	$.ee_filebrowser.add_trigger("#textile-toolbar-"+canvas+" .teh_filebrowser", function (c) {
 		if(!c.is_image) {
-			insert = '<a href="{filedir_' + c.directory + '}">';
+			insert = '<a href="{filedir_' + c.directory + '}' + c.name + '">' + c.name + '</a>';
 		} else {
 			alt = prompt('Alternative Text');
 			insert = '<img src="{filedir_' + c.directory + '}' + c.name + '" alt="' + alt + '" ' + c.dimensions + ' />';
