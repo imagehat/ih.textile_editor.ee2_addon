@@ -56,13 +56,15 @@ function teh_filebrowser(canvas) {
 		return false;
     });
 	$.ee_filebrowser.add_trigger("#textile-toolbar-"+canvas+" .teh_filebrowser", function (c) {
+		fileLink = '{filedir_' + c.directory + '}' + c.name;
 		if(!c.is_image) {
-			insert = '<a href="{filedir_' + c.directory + '}' + c.name + '">' + c.name + '</a>';
+			insert = '<a href="'+fileLink+'">' + c.name + '</a>';
 		} else {
 			alt = prompt('Alternative Text');
-			insert = '<img src="{filedir_' + c.directory + '}' + c.name + '" alt="' + alt + '" ' + c.dimensions + ' />';
+			insert = '<img src="'+fileLink+'" alt="'+alt+'" '+c.dimensions+' />';
+			fileLink = false; // Mimic EE's filemanager handling which doesn't link an image, just places image tag no matter what.
 		}
-		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert);
+		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert, fileLink);
         $.ee_filebrowser.reset()
     });
 
@@ -77,7 +79,7 @@ function teh_help(url) {
 
 // Insert string into text field. 
 // Called from dialog or filebrowser callback
-function insert_text(button, which, string) {
+function insert_text(button, which, string, fileLink) {
 	if(typeof(button) == 'string') {
 		button = $(button).get(0); // dom element
 	}
@@ -167,7 +169,11 @@ function insert_text(button, which, string) {
 	
 	// Filebrowser
 	if (which == 'file') {
-		insert = string;
+		if (textSelected && fileLink !== false) {			
+			insert = '<a href="'+fileLink+'">'+selectedText+'</a>';
+		} else {
+			insert = string;
+		}
 	}
 
 	// set the appropriate DOM value with the final text
