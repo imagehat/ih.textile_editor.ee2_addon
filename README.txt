@@ -3,6 +3,7 @@ Textile Editor Helper (TEH) extension for ExpressionEngine Version 2.x
 EE extension by Mike Kroll, www.imagehat.com
 Port of Textile Editor by Dave Olson, slateinfo.blogs.wvu.edu
 
+Version 2.0.5 - Updated to use EE 2.2 upload JS objects
 Version 2.0.4 - Updated to maintain text selection when linking to files
                 using the native EE File Manager
 Version 2.0.3 - Fixed a bug with placing files using the EE file manager

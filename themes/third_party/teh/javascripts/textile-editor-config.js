@@ -56,12 +56,13 @@ function teh_filebrowser(canvas) {
 		return false;
     });
 	$.ee_filebrowser.add_trigger("#textile-toolbar-"+canvas+" .teh_filebrowser", function (c) {
-		fileLink = '{filedir_' + c.directory + '}' + c.name;
+		fileLink = '{filedir_' + c.upload_location_id + '}' + c.file_name;
+        fileDimensions = c.file_hw_original.split(' ');
 		if(!c.is_image) {
 			insert = '<a href="'+fileLink+'">' + c.name + '</a>';
 		} else {
 			alt = prompt('Alternative Text');
-			insert = '<img src="'+fileLink+'" alt="'+alt+'" '+c.dimensions+' />';
+			insert = '<img src="'+fileLink+'" alt="'+alt+'" width="' + fileDimensions[1] +'" height="' + fileDimensions[0] + '" />';
 			fileLink = false; // Mimic EE's filemanager handling which doesn't link an image, just places image tag no matter what.
 		}
 		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert, fileLink);
