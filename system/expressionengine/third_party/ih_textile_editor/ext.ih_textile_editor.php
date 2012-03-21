@@ -50,7 +50,7 @@ class Ih_textile_editor_ext
 	var $settings		= array();
 	
 	var $name			= 'Textile Editor Helper (TEH)';
-	var $version		= '2.0.4';
+	var $version		= '2.0.5';
 	var $description	= 'Makes all Textareas set to use Textile formatting in the Publish area WYSIWYG-ish';
 	var $settings_exist	= 'y';
 	var $docs_url		= 'http://slateinfo.blogs.wvu.edu/plugins/textile_editor_helper/';
