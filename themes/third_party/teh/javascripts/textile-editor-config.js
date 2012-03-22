@@ -56,17 +56,18 @@ function teh_filebrowser(canvas) {
 		return false;
   });
 	$.ee_filebrowser.add_trigger("#textile-toolbar-"+canvas+" .teh_filebrowser", function (c) {
+		var filepath = '{filedir_' + c.upload_location_id + '}' + c.file_name;
 		if(!c.is_image) {
-			insert = '<a href="{filedir_' + c.upload_location_id + '}' + c.file_name + '">' + c.file_name + '</a>';
+			insert = '<a href="' + filepath + '">' + c.file_name + '</a>';
 		} else {
 			alt = prompt('Alternative Text');
 			dimensions = '';
 			if ("undefined" != typeof(c.file_hw_original) && "" != c.file_hw_original && (dimensions = c.file_hw_original.split(" "))) { 
 				dimensions = 'height="' + dimensions[0] + '" width="' + dimensions[1] + '"';
 			}
-			insert = '<img src="{filedir_' + c.upload_location_id + '}' + c.file_name + '" alt="' + alt + '" ' + dimensions + ' />';
+			insert = '<img src="' + filepath + '" alt="' + alt + '" ' + dimensions + ' />';
 		}
-		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert);
+		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert, filepath );
   });
 
 }
@@ -80,7 +81,7 @@ function teh_help(url) {
 
 // Insert string into text field. 
 // Called from dialog or filebrowser callback
-function insert_text(button, which, string, fileLink) {
+function insert_text(button, which, string, filepath) {
 	if(typeof(button) == 'string') {
 		button = $(button).get(0); // dom element
 	}
@@ -170,8 +171,8 @@ function insert_text(button, which, string, fileLink) {
 	
 	// Filebrowser
 	if (which == 'file') {
-		if (textSelected && fileLink !== false) {			
-			insert = '<a href="'+fileLink+'">'+selectedText+'</a>';
+		if (textSelected && filepath !== false) {			
+			insert = '<a href="'+filepath+'">'+selectedText+'</a>';
 		} else {
 			insert = string;
 		}
