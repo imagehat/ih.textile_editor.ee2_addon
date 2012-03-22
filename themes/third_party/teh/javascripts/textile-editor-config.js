@@ -54,20 +54,20 @@ function teh_filebrowser(canvas) {
         }
         window.file_manager_context = c;
 		return false;
-    });
+  });
 	$.ee_filebrowser.add_trigger("#textile-toolbar-"+canvas+" .teh_filebrowser", function (c) {
-		fileLink = '{filedir_' + c.upload_location_id + '}' + c.file_name;
-        fileDimensions = c.file_hw_original.split(' ');
 		if(!c.is_image) {
-			insert = '<a href="'+fileLink+'">' + c.name + '</a>';
+			insert = '<a href="{filedir_' + c.upload_location_id + '}' + c.file_name + '">' + c.file_name + '</a>';
 		} else {
 			alt = prompt('Alternative Text');
-			insert = '<img src="'+fileLink+'" alt="'+alt+'" width="' + fileDimensions[1] +'" height="' + fileDimensions[0] + '" />';
-			fileLink = false; // Mimic EE's filemanager handling which doesn't link an image, just places image tag no matter what.
+			dimensions = '';
+			if ("undefined" != typeof(c.file_hw_original) && "" != c.file_hw_original && (dimensions = c.file_hw_original.split(" "))) { 
+				dimensions = 'height="' + dimensions[0] + '" width="' + dimensions[1] + '"';
+			}
+			insert = '<img src="{filedir_' + c.upload_location_id + '}' + c.file_name + '" alt="' + alt + '" ' + dimensions + ' />';
 		}
-		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert, fileLink);
-        $.ee_filebrowser.reset()
-    });
+		insert_text("#textile-toolbar-"+canvas+" .teh_filebrowser", 'file', insert);
+  });
 
 }
 
