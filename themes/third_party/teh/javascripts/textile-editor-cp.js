@@ -4,6 +4,10 @@ $(document).ready(function($) {
 	$("textarea[name*=\'field_id_\']").each(function(){
 
 		var canvas = $(this).attr("name");
+		if( ! $(this).attr('id'))
+		{
+			$(this).attr('id', canvas);
+		}
 		
 		if(typeof(EE.teh_options.fields) != "undefined" && typeof(EE.teh_options.fields[canvas]) != "undefined") {
 			
